@@ -1,0 +1,73 @@
+name: garage
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.2.1
+  google_maps_flutter: ^2.10.0
+  geolocator: ^13.0.2
+  google_places_flutter: ^2.0.9
+  geocoding: ^2.1.0
+  carousel_slider: ^5.0.0
+  smooth_page_indicator: ^1.2.0+3
+  intl_phone_field: ^3.2.0
+  flutter_timer_countdown: ^1.0.7
+  persistent_bottom_nav_bar: ^6.2.1
+  cupertino_icons: ^1.0.8
+  url_launcher: ^6.2.1
+  http: ^1.4.0
+  image_picker: ^1.1.2
+  provider: ^6.1.4
+  flutter_polyline_points: ^2.1.0
+  flutter_tts: ^4.2.2
+  firebase_core: ^3.13.0
+  cloud_firestore: ^5.6.6
+  firebase_auth: ^5.5.2
+  google_sign_in: ^6.3.0
+  firebase_storage: ^12.4.5
+  shared_preferences: ^2.5.3
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.14.3
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/CarCompany/
+    - assets/Login/
+    - assets/Profile/
+    - assets/SplashScreen/
+    - assets/Inventory/
+    - assets/Inventory/Battery/
+    - assets/Inventory/AC/
+    - assets/Inventory/Tyre/
+    - assets/Inventory/Brake/
+    - assets/Inventory/Clutch/
+    - assets/Inventory/Suspension/
+    - assets/Inventory/Lights/
+    - assets/Inventory/Glass/
+    - assets/Service_Booking/
+    - assets/loading.gif
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/SplashScreen/logo.png"
+
+
+
+
+
+
+

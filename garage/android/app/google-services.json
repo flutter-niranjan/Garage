@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "800570586689",
+    "project_id": "automech-ca3b2",
+    "storage_bucket": "automech-ca3b2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800570586689:android:4ff34861306367c4f9f8c0",
+        "android_client_info": {
+          "package_name": "com.example.garage"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJp_EviA7gE9MCsv2yuaptfgxcSKIsqKE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

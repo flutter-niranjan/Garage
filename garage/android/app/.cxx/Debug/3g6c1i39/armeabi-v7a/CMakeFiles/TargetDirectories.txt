@@ -1,0 +1,2 @@
+C:/Users/Niranjan/Documents/GitHub/BE_Project/garage/android/app/.cxx/Debug/3g6c1i39/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/Niranjan/Documents/GitHub/BE_Project/garage/android/app/.cxx/Debug/3g6c1i39/armeabi-v7a/CMakeFiles/rebuild_cache.dir

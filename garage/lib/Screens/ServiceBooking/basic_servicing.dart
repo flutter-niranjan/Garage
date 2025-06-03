@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:garage/Screens/LoginScreen/login.dart';
-import 'package:garage/Screens/ServiceBooking/my_cart.dart';
+import 'package:garage/Screens/CartScreen/my_cart.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -70,8 +70,8 @@ class _BasicServicingState extends State {
         child: FloatingActionButton(
           backgroundColor: Colors.red,
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => MyCart()));
+            // Navigator.push(
+            //     context, MaterialPageRoute(builder: (context) => MyCart()));
           },
           child: Row(
             children: [

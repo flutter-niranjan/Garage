@@ -6,18 +6,20 @@ import 'package:garage/Providers/garage_provider.dart';
 import 'package:garage/Screens/Home/garage_detail.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeScreen1 extends StatefulWidget {
-  const HomeScreen1({super.key});
+  final PersistentTabController controller;
+  const HomeScreen1({super.key, required this.controller});
 
   @override
-  State createState() => _HomeScreenState();
+  State<HomeScreen1> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State {
+class _HomeScreenState extends State<HomeScreen1> {
   var data1;
   bool _isLoading = true;
   Position? _currentPosition;
@@ -99,7 +101,10 @@ class _HomeScreenState extends State {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => GarageDetail(garage: garage),
+                        builder: (context) => GarageDetail(
+                          garage: garage,
+                          controller: widget.controller,
+                        ),
                       ),
                     );
                   },

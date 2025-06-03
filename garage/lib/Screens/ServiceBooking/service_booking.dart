@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:garage/Model/cart_model.dart';
 import 'package:garage/Screens/ServiceBooking/basic_servicing.dart';
 import 'package:garage/Screens/ServiceBooking/comperhensive_servicing.dart';
-import 'package:garage/Screens/ServiceBooking/my_cart.dart';
+import 'package:garage/Screens/CartScreen/my_cart.dart';
 import 'package:garage/Screens/ServiceBooking/standard_servicing.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -52,10 +52,14 @@ class _ServiceBookingState extends State {
             ),
             GestureDetector(
               onTap: () {
-                Provider.of<CartModel>(context, listen: false)
-                    .addService("Basic Servicing", 17519.0);
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => MyCart()));
+                // Provider.of<CartModel>(context, listen: false)
+                //     .addService("Basic Servicing", 17519.0);
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => MyCart(
+                //               garageName: "",
+                //             )));
               },
               child: Container(
                 margin: const EdgeInsets.only(top: 170, left: 15, right: 15),
@@ -151,10 +155,14 @@ class _ServiceBookingState extends State {
             ),
             GestureDetector(
               onTap: () {
-                Provider.of<CartModel>(context, listen: false)
-                    .addService("Standard Servicing", 21519.0);
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => MyCart()));
+                // Provider.of<CartModel>(context, listen: false)
+                //     .addService("Standard Servicing", 21519.0);
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => MyCart(
+                //               garageName: "",
+                //             )));
               },
               child: Container(
                 margin: const EdgeInsets.only(top: 350, left: 15, right: 15),
@@ -250,10 +258,14 @@ class _ServiceBookingState extends State {
             ),
             GestureDetector(
               onTap: () {
-                Provider.of<CartModel>(context, listen: false)
-                    .addService("Comperhensive Servicing", 28519.0);
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => MyCart()));
+                // Provider.of<CartModel>(context, listen: false)
+                //     .addService("Comperhensive Servicing", 28519.0);
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => MyCart(
+                //               garageName: "",
+                //             )));
               },
               child: Container(
                 margin: const EdgeInsets.only(top: 530, left: 15, right: 15),

@@ -25,7 +25,7 @@ import 'package:garage/Screens/MapScreen/newmap.dart';
 import 'package:garage/Screens/Profile/myprofile.dart';
 import 'package:garage/Screens/Profile/profilescreen.dart';
 import 'package:garage/Screens/Profile/register_partner.dart';
-import 'package:garage/Screens/ServiceBooking/my_cart.dart';
+import 'package:garage/Screens/CartScreen/my_cart.dart';
 import 'package:garage/Screens/ServiceBooking/service_booking.dart';
 import 'package:garage/Screens/SplashScreen/SplashScreen.dart';
 import 'package:garage/Screens/CarCompany/modelSelection.dart';

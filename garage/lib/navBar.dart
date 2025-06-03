@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:garage/Screens/CartScreen/my_cart.dart';
 import 'package:garage/Screens/Home/home_screen.dart';
 import 'package:garage/Screens/Home/userhomepage.dart';
 import 'package:garage/Screens/Inventory/inventory.dart';
@@ -15,14 +16,21 @@ class Navbar extends StatefulWidget {
 }
 
 class _NavBarState extends State {
+  late PersistentTabController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = PersistentTabController(initialIndex: 0);
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> _buildScreens() {
       return [
-        const HomeScreen1(),
-        const ServiceBooking(),
+        HomeScreen1(controller: _controller),
         const Mapscreen(),
-        const Inventory(),
+        MyCart(garageName: "", controller: _controller),
         const Profilescreen(),
       ];
     }
@@ -37,29 +45,16 @@ class _NavBarState extends State {
           inactiveColorPrimary: Colors.grey,
         ),
         PersistentBottomNavBarItem(
-          icon: const Icon(Icons.calendar_month),
-          inactiveIcon: const Icon(Icons.calendar_month_outlined),
-          title: ("Service Booking"),
-          activeColorPrimary: Colors.red,
-          inactiveColorPrimary: Colors.grey,
-        ),
-        PersistentBottomNavBarItem(
-          icon: const Icon(
-            Icons.location_on,
-            color: Colors.white,
-          ),
-          inactiveIcon: const Icon(
-            Icons.location_on_outlined,
-            color: Colors.white,
-          ),
+          icon: const Icon(Icons.location_on),
+          inactiveIcon: const Icon(Icons.location_on_outlined),
           title: ("Map"),
           activeColorPrimary: Colors.red,
           inactiveColorPrimary: Colors.grey,
         ),
         PersistentBottomNavBarItem(
-          icon: const Icon(Icons.inventory_2),
-          inactiveIcon: const Icon(Icons.inventory_2_outlined),
-          title: ("Inventory"),
+          icon: const Icon(Icons.shopping_cart),
+          inactiveIcon: const Icon(Icons.shopping_cart_outlined),
+          title: ("Cart"),
           activeColorPrimary: Colors.red,
           inactiveColorPrimary: Colors.grey,
         ),
@@ -73,9 +68,9 @@ class _NavBarState extends State {
       ];
     }
 
-    PersistentTabController _controller;
+    // PersistentTabController _controller;
 
-    _controller = PersistentTabController(initialIndex: 0);
+    // _controller = PersistentTabController(initialIndex: 0);
     return PersistentTabView(
       context,
       controller: _controller,
@@ -85,7 +80,6 @@ class _NavBarState extends State {
       resizeToAvoidBottomInset: true,
       stateManagement: true,
       hideNavigationBarWhenKeyboardAppears: true,
-
       // popBehaviorOnSelectedNavBarItemPress: PopActionScreensType.all,
       padding: const EdgeInsets.only(top: 8),
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
@@ -104,7 +98,7 @@ class _NavBarState extends State {
       confineToSafeArea: true,
       navBarHeight: kBottomNavigationBarHeight,
       navBarStyle:
-          NavBarStyle.style15, // Choose the nav bar style with this property
+          NavBarStyle.style14, // Choose the nav bar style with this property
     );
   }
 }

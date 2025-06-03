@@ -44,7 +44,7 @@ class CartModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addItem(Map<String, dynamic> item,
+  bool addItem(Map<String, dynamic> item,
       {String? garageName, BuildContext? context}) {
     if (_garageName != null &&
         garageName != null &&
@@ -56,9 +56,9 @@ class CartModel extends ChangeNotifier {
                   "You can only add items from $_garageName. Please clear your cart to add items from other garages.")),
         );
       }
-      return;
+      return false;
     }
-    if(_garageName == null && garageName != null) {
+    if (_garageName == null && garageName != null) {
       _garageName = garageName;
     }
     final index = _services.indexWhere((e) => e["name"] == item["name"]);
@@ -68,10 +68,14 @@ class CartModel extends ChangeNotifier {
       _services.add(item);
     }
     notifyListeners();
+    return true;
   }
 
   void removeService(String name) {
     _services.removeWhere((item) => item["name"] == name);
+    if (_services.isEmpty) {
+      _garageName = null;
+    }
     notifyListeners();
   }
 
@@ -87,6 +91,9 @@ class CartModel extends ChangeNotifier {
         _services[index]["count"] -= 1;
       } else {
         _services.removeAt(index);
+      }
+      if (_services.isEmpty) {
+        _garageName = null;
       }
       notifyListeners();
     }

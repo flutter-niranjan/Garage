@@ -14,17 +14,19 @@ class ItemDetail extends StatefulWidget {
 }
 
 class _ItemDetailState extends State<ItemDetail> {
-  void _updateCart(BuildContext context, int count) {
+  bool _updateCart(BuildContext context, int count) {
     if (count > 0) {
-      Provider.of<CartModel>(context, listen: false).addItem({
+      return Provider.of<CartModel>(context, listen: false).addItem({
         "name": widget.item["name"],
         "price": widget.item["price"],
         "imagePath": widget.item["image"],
         "count": count,
-      });
+        "garageName": widget.item["garageName"],
+      }, garageName: widget.item["garageName"], context: context);
     } else {
       Provider.of<CartModel>(context, listen: false)
           .removeService(widget.item["name"]);
+      return true;
     }
   }
 
@@ -85,10 +87,12 @@ class _ItemDetailState extends State<ItemDetail> {
               count == 0
                   ? ElevatedButton(
                       onPressed: () {
-                        _updateCart(context, 1);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Item added to cart!')),
-                        );
+                        final added = _updateCart(context, 1);
+                        if (added) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text('Item added to cart!')));
+                        }
                       },
                       child: const Text("Add to Cart"),
                     )

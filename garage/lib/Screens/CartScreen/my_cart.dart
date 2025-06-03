@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:garage/Model/cart_model.dart';
 import 'package:garage/Model/garage.dart';
 import 'package:garage/Providers/garage_provider.dart';
+import 'package:garage/Providers/login_data.dart';
 import 'package:garage/Screens/Home/garage_detail.dart';
 import 'package:garage/Screens/Home/garagehomepage.dart';
 import 'package:garage/Screens/Home/userhomepage.dart';
@@ -46,6 +47,8 @@ class _MyCartState extends State<MyCart> {
         categoryItems: {},
       ),
     );
+
+    final loginData = Provider.of<LoginData>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -298,6 +301,36 @@ class _MyCartState extends State<MyCart> {
                             fontWeight: FontWeight.w500,
                             color: Colors.blueGrey,
                           ),
+                        ),
+                      if (cart.services.isNotEmpty)
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Customer Name: ${loginData.name}",
+                              style: GoogleFonts.poppins(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.blueGrey,
+                              ),
+                            ),
+                            Text(
+                              "Mobile: ${loginData.mobile}",
+                              style: GoogleFonts.poppins(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.blueGrey,
+                              ),
+                            ),
+                            Text(
+                              "Email: ${loginData.email}",
+                              style: GoogleFonts.poppins(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.blueGrey,
+                              ),
+                            ),
+                          ],
                         ),
                       if (cart.services.isNotEmpty)
                         Column(

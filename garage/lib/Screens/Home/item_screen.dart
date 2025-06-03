@@ -75,18 +75,24 @@ class _ItemScreenState extends State<ItemScreen> {
                     trailing: count == 0
                         ? ElevatedButton(
                             onPressed: () {
-                              Provider.of<CartModel>(context, listen: false)
-                                  .addItem({
+                              final added =
+                                  Provider.of<CartModel>(context, listen: false)
+                                      .addItem({
                                 "name": item["name"],
                                 "price": item["price"],
                                 "imagePath": item["image"],
                                 "count": 1,
-                              });
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                    content:
-                                        Text('${item["name"]} added to cart')),
-                              );
+                                "garageName": item["garageName"],
+                              },
+                                          garageName: item["garageName"],
+                                          context: context);
+                              if (added) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text(
+                                          '${item["name"]} added to cart')),
+                                );
+                              }
                             },
                             child: const Text("Add to Cart"),
                           )
@@ -104,7 +110,10 @@ class _ItemScreenState extends State<ItemScreen> {
                                       "price": item["price"],
                                       "imagePath": item["image"],
                                       "count": count - 1,
-                                    });
+                                      "garageName": item["garageName"],
+                                    },
+                                            garageName: item["garageName"],
+                                            context: context);
                                   } else {
                                     Provider.of<CartModel>(context,
                                             listen: false)
@@ -126,7 +135,10 @@ class _ItemScreenState extends State<ItemScreen> {
                                     "price": item["price"],
                                     "imagePath": item["image"],
                                     "count": count + 1,
-                                  });
+                                    "garageName": item["garageName"],
+                                  },
+                                          garageName: item["garageName"],
+                                          context: context);
                                 },
                               ),
                             ],

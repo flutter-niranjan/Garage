@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:garage/firebasedataupload.dart';
@@ -8,8 +7,6 @@ import 'dart:io';
 
 import 'package:provider/provider.dart';
 
-
-
 class LoginData extends ChangeNotifier {
   String loginType = 'user';
   String verificationId = '';
@@ -18,6 +15,7 @@ class LoginData extends ChangeNotifier {
   String email = '';
   String dOB = '';
   String gender = '';
+  String mobile = " ";
 
   void setLoginType(String newType) {
     loginType = newType;
@@ -35,16 +33,15 @@ class LoginData extends ChangeNotifier {
   }
 
   void setData(
-      {String? newName, String? newEmail, String? newDOB, String? newGender}) {
+      {String? newName, String? newEmail,String? newMobile, String? newDOB, String? newGender}) {
     name = newName ?? name;
     email = newEmail ?? email;
+    mobile = newMobile ?? mobile;
     dOB = newDOB ?? dOB;
     gender = newGender ?? gender;
     notifyListeners();
   }
 }
-
-
 
 class CarInfo extends ChangeNotifier {
   String carCompany = '';
@@ -68,7 +65,7 @@ class CarInfo extends ChangeNotifier {
 }
 
 class Loader extends ChangeNotifier {
-  bool isGetOtpLoaderOn=false;
+  bool isGetOtpLoaderOn = false;
   Widget getOtpLoader = Text(
     "GET OTP",
     style: GoogleFonts.poppins(
@@ -81,9 +78,9 @@ class Loader extends ChangeNotifier {
     if (value == 'on') {
       getOtpLoader = SizedBox(
           height: 30, width: 30, child: Image.asset('assets/loading.gif'));
-        isGetOtpLoaderOn=true;
-        log('loader on');
-        ChangeNotifier();
+      isGetOtpLoaderOn = true;
+      log('loader on');
+      ChangeNotifier();
     } else {
       getOtpLoader = Text(
         "GET OTP",
@@ -93,7 +90,7 @@ class Loader extends ChangeNotifier {
           fontWeight: FontWeight.w500,
         ),
       );
-      isGetOtpLoaderOn=false;
+      isGetOtpLoaderOn = false;
     }
     ChangeNotifier();
   }

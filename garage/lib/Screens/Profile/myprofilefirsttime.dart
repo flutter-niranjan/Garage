@@ -1,5 +1,3 @@
-
-
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,25 +15,40 @@ class MyprofileFirstTime extends StatefulWidget {
 }
 
 enum Gender { Male, Female }
+
 String? gender;
- 
+
 class _MyprofileFirstTime extends State {
   Gender? _gender = Gender.Male;
-  TextEditingController nameController=TextEditingController();
-  TextEditingController emailController=TextEditingController();
-  TextEditingController dOBController=TextEditingController();
-  
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController dOBController = TextEditingController();
+  TextEditingController mobileController = TextEditingController();
+  DateTime? selectedDate;
 
   Future<void> _selectDate() async {
-    await showDatePicker(
+    final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(1990),
-      lastDate: DateTime(2025),
+      initialDate: selectedDate ?? DateTime.now(),
+      firstDate: DateTime(1950),
+      lastDate: DateTime.now(),
     );
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+        dOBController.text =
+            "${picked.day.toString().padLeft(2, "0")}/${picked.month.toString().padLeft(2, "0")}/${picked.year}";
+      });
+    }
   }
 
-  
+  @override
+  void dispose() {
+    nameController.dispose();
+    mobileController.dispose();
+    dOBController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +95,8 @@ class _MyprofileFirstTime extends State {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 35, left: 15, right: 15),
+                    padding:
+                        const EdgeInsets.only(top: 35, left: 15, right: 15),
                     child: TextField(
                       controller: nameController,
                       decoration: InputDecoration(
@@ -97,7 +111,8 @@ class _MyprofileFirstTime extends State {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 115, left: 15, right: 15),
+                    padding:
+                        const EdgeInsets.only(top: 115, left: 15, right: 15),
                     child: TextField(
                       controller: emailController,
                       decoration: InputDecoration(
@@ -111,6 +126,25 @@ class _MyprofileFirstTime extends State {
                       ),
                     ),
                   ),
+
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 195, left: 15, right: 15),
+                    child: TextField(
+                      controller: mobileController,
+                      keyboardType: TextInputType.phone,
+                      decoration: InputDecoration(
+                        labelText: "Mobile Number",
+                        labelStyle: GoogleFonts.poppins(
+                          color: Colors.black,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                    ),
+                  ),
+
                   // Padding(
                   //   padding: const EdgeInsets.only(top: 195, left: 15, right: 15),
                   //   child: TextField(
@@ -123,10 +157,11 @@ class _MyprofileFirstTime extends State {
                   //         borderRadius: BorderRadius.circular(15),
                   //       ),
                   //     ),
-                  //   ),                 
-                  // ),                     
+                  //   ),
+                  // ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 195, left: 15, right: 15),
+                    padding:
+                        const EdgeInsets.only(top: 275, left: 15, right: 15),
                     child: TextField(
                       controller: dOBController,
                       readOnly: true,
@@ -148,7 +183,10 @@ class _MyprofileFirstTime extends State {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 275, left: 15,),
+                    padding: const EdgeInsets.only(
+                      top: 275,
+                      left: 15,
+                    ),
                     child: Text(
                       "Gender",
                       style: GoogleFonts.poppins(
@@ -158,7 +196,7 @@ class _MyprofileFirstTime extends State {
                     ),
                   ),
                   Container(
-                    margin:const EdgeInsets.only(top: 300, left: 15),
+                    margin: const EdgeInsets.only(top: 300, left: 15),
                     child: RadioListTile(
                       title: Text(
                         "Male",
@@ -169,14 +207,16 @@ class _MyprofileFirstTime extends State {
                       onChanged: (Gender? value) {
                         setState(() {
                           _gender = value;
-                          gender=value.toString()=="Gender.Female"?"Female":"Male";
-                          log(gender??'null');
+                          gender = value.toString() == "Gender.Female"
+                              ? "Female"
+                              : "Male";
+                          log(gender ?? 'null');
                         });
                       },
                     ),
                   ),
                   Container(
-                    margin:const EdgeInsets.only(top: 330, left: 15),
+                    margin: const EdgeInsets.only(top: 330, left: 15),
                     child: RadioListTile(
                       title: Text(
                         "Female",
@@ -187,16 +227,17 @@ class _MyprofileFirstTime extends State {
                       onChanged: (Gender? value) {
                         setState(() {
                           _gender = value;
-                          gender=value.toString()=="Gender.Female"?"Female":"Male";
-                          log(gender??'null');
-                          
+                          gender = value.toString() == "Gender.Female"
+                              ? "Female"
+                              : "Male";
+                          log(gender ?? 'null');
                         });
                       },
                     ),
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 400),
-                    padding:const EdgeInsets.only(left: 15, right: 15),
+                    padding: const EdgeInsets.only(left: 15, right: 15),
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -206,19 +247,29 @@ class _MyprofileFirstTime extends State {
                         ),
                       ),
                       onPressed: () {
-                        if(nameController.text.isNotEmpty && emailController.text.isNotEmpty){
-                          context.read<LoginData>().setData(newName: nameController.text,newEmail: emailController.text,newDOB: dOBController.text,newGender:gender=="Gender.Female"?"Female":"Male");
-                          Navigator.push(context,MaterialPageRoute(builder: (context){
+                        if (nameController.text.isNotEmpty &&
+                            emailController.text.isNotEmpty &&
+                            mobileController.text.isNotEmpty) {
+                          context.read<LoginData>().setData(
+                              newName: nameController.text,
+                              newEmail: emailController.text,
+                              newMobile: mobileController.text,
+                              newDOB: dOBController.text,
+                              newGender: gender == "Gender.Female"
+                                  ? "Female"
+                                  : "Male");
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
                             return const CarCompany();
                           }));
-                        }else{
+                        } else {
                           ScaffoldMessenger.of(context).showSnackBar(
-                       const SnackBar(
-                          content: Text("Please fill required information"),
-                          backgroundColor: Colors.orange,
-                          duration: Duration(seconds: 3),
-                        ),
-                      );
+                            const SnackBar(
+                              content: Text("Please fill required information"),
+                              backgroundColor: Colors.orange,
+                              duration: Duration(seconds: 3),
+                            ),
+                          );
                         }
                       },
                       child: Text(

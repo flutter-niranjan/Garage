@@ -228,10 +228,16 @@ class _GarageDetailState extends State<GarageDetail> {
                 children: widget.garage.categories.map((category) {
                   return GestureDetector(
                     onTap: () {
-                      final items = widget
-                              .garage.categoryItems[category]?.values
-                              .toList() ??
-                          [];
+                      final items = (widget
+                                  .garage.categoryItems[category]?.values
+                                  .toList() ??
+                              [])
+                          .map((item) => {
+                                ...item,
+                                "garageName": widget.garage
+                                    .name, // Ensure garageName is present
+                              })
+                          .toList();
                       Navigator.push(
                         context,
                         MaterialPageRoute(
